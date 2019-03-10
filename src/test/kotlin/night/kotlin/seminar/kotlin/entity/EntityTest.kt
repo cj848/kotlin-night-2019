@@ -8,10 +8,22 @@ internal class EntityTest {
     fun `엔티티 테스트`() {
         val order = Order(
                 1,
-                User(1, "강현식", "cj848@hanmail.net"),
+                User(
+                        1,
+                        "강현식",
+                        "cj848@hanmail.net"
+                ),
                 listOf(
-                        OrderItem(1, "아이템_5", 5),
-                        OrderItem(2, "아이템_10", 10)
+                        OrderItem(
+                                1,
+                                "아이템_5",
+                                5
+                        ),
+                        OrderItem(
+                                2,
+                                "아이템_10",
+                                10
+                        )
                 )
         )
 

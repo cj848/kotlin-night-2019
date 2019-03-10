@@ -28,6 +28,35 @@ public class EntityTest {
 		assertOrder(order);
 	}
 
+	@Test
+	public void entityMakeNewObjectTest_jdk9_style() {
+		Order order = new Order(
+			1L,
+			new User(1L, "강현식", "cj848@hanmail.net"),
+			List.of(
+				new OrderItem(1L, "아이템_5", 5L),
+				new OrderItem(2L, "아이템_10", 10L)
+				   )
+		);
+
+		assertOrder(order);
+	}
+
+	@Test
+	public void entityMakeNewObjectTest_guava_style() {
+		Order order = new Order(
+			1L,
+			new User(1L, "강현식", "cj848@hanmail.net"),
+			Lists.newArrayList(
+				new OrderItem(1L, "아이템_5", 5L),
+				new OrderItem(2L, "아이템_10", 10L)
+				   )
+		);
+
+		assertOrder(order);
+	}
+
+
 	private void assertOrder(Order order) {
 		log.info("주문 id: {}, 총 금액: {}, 유저 이름: {}", order.getId(), order.getAmount(), order.getUser().getName());
 

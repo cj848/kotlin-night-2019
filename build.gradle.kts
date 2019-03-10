@@ -1,5 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.js.resolve.JsPlatform
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     val kotlinVersion = "1.3.21"
@@ -19,31 +19,39 @@ apply {
     plugin("io.spring.dependency-management")
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.boot:spring-boot-autoconfigure")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-configuration-processor")
+    runtime("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(module = "junit")
     }
     implementation("com.google.guava:guava:27.0.1-jre")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testImplementation("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("io.mockk", "mockk", "1.9.1")
+
     annotationProcessor("org.projectlombok:lombok")
     testAnnotationProcessor("org.projectlombok:lombok")
-    testImplementation("io.mockk", "mockk", "1.9.1")
+    compileOnly("org.projectlombok:lombok")
+    testCompileOnly("org.projectlombok:lombok")
 }
 
-tasks.bootJar {
-    archiveFileName.set("app.jar")
-}
+val bootJar: BootJar by tasks
+val test: Test by tasks
+val compileKotlin: KotlinCompile by tasks
 
-tasks.withType<Test> {
-    useJUnitPlatform()
-}
+bootJar.archiveFileName.set("app.jar")
+test.useJUnitPlatform()
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
-    kotlinOptions.freeCompilerArgs = listOf("-Xjsr305=strict")
+compileKotlin.kotlinOptions {
+    jvmTarget = "1.8"
+    freeCompilerArgs = listOf("-Xjsr305=strict")
 }
