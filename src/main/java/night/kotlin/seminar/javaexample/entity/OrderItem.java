@@ -5,6 +5,8 @@ public class OrderItem {
 	private String name;
 	private Long amount;
 
+	public OrderItem() {}
+
 	public OrderItem(Long id, String name, Long amount) {
 		this.id = id;
 		this.name = name;
@@ -15,12 +17,24 @@ public class OrderItem {
 		return id;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public Long getAmount() {
 		return amount;
+	}
+
+	public void setAmount(Long amount) {
+		this.amount = amount;
 	}
 
 	public static OrderItemBuilder builder() {

@@ -7,6 +7,8 @@ public class Order {
 	private User user;
 	private List<OrderItem> items;
 
+	public Order() {}
+
 	public Order(Long id, User user, List<OrderItem> items) {
 		this.id = id;
 		this.user = user;
@@ -17,12 +19,24 @@ public class Order {
 		return id;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public User getUser() {
 		return user;
 	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public List<OrderItem> getItems() {
 		return items;
+	}
+
+	public void setItems(List<OrderItem> items) {
+		this.items = items;
 	}
 
 	public Long getAmount() {
