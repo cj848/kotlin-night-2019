@@ -33,4 +33,32 @@ internal class EntityTest {
         println(order)
         println("주문 id: ${order.id}, 총 금액: ${order.amount}, 유저 이름: ${order.user.name}")
     }
+
+    @Test
+    fun entityListFindFirst() {
+        val order = Order(
+                1,
+                User(
+                        1,
+                        "강현식",
+                        "cj848@hanmail.net"
+                ),
+                listOf(
+                        OrderItem(
+                                1,
+                                "아이템_5",
+                                5
+                        ),
+                        OrderItem(
+                                2,
+                                "아이템_10",
+                                10
+                        )
+                )
+        )
+
+        val firstItem = order.items.first { it.amount > 5 }
+
+        assertThat(firstItem).isEqualTo(order.items[1])
+    }
 }
