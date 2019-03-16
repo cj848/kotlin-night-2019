@@ -4,11 +4,12 @@ import org.junit.jupiter.api.Test
 
 class IfTest {
     @Test
-    fun `if 는 식(expression)으로써 값에 대입 가능하며 리턴값으로도 활용 가능`() {
+    fun `if 는 식(expression)으로써 변수에 대입 가능하며 리턴값으로도 활용 가능`() {
         val result =
-                if ("kotlin" > "java")
-                    "Kotlin이 짱이다"
-                else "아니다 Java가 짱이쥐!"
+                when {
+                    "kotlin" > "java" || "kotlin" > "scala" -> "Kotlin이 짱이다"
+                    else -> "아니다 Java가 짱이쥐!"
+                }
 
         println(result)
         println(stringCompare("kotlin", "scala"))

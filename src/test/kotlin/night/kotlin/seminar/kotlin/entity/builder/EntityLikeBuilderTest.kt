@@ -70,4 +70,18 @@ class EntityLikeBuilderTest {
         assertThat(order.amount).isEqualTo(15L)
         assertThat(order.user!!.name).isEqualTo("강현식")
     }
+
+    @Test
+    fun apply예제() {
+        Order().apply({
+            // 이게 풀어쓴 표현
+            // 사실 apply 의 block 이 이 전달된 함수이다
+            id = 1L
+        })
+        Order().apply { // Lambda 를 이런식으로 생략해서 표현이 가능
+
+            id = 1L
+        }
+
+    }
 }

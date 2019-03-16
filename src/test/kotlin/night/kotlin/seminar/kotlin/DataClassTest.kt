@@ -9,12 +9,12 @@ class DataClassTest {
     data class RequestVO<T>(val request: T,
                             val transactionId: Long,
                             val requesterId: String,
-                            val createdAt: LocalDateTime)
+                            val createdAt: LocalDateTime = LocalDateTime.now())
 
     @Test
     fun `dataClass + Generic 활용 예`() {
         val autoGenericTypeInferredRequest = RequestVO("test", 1L, "id", LocalDateTime.now())
-        val itIsNoLongerNecessaryDiamond = RequestVO<String>("또 다른 요청", 2L, "id", LocalDateTime.now())
+        val itIsNoLongerNecessaryDiamond = RequestVO<String>("또 다른 요청", 2L, "id") // 기본값 생략 가능
 
         println(autoGenericTypeInferredRequest)
         println(itIsNoLongerNecessaryDiamond)
