@@ -10,6 +10,13 @@ internal class LambdaExampleTest {
         assertThat(LambdaExample.add(1).invoke(1L)).isEqualTo(2L)
         assertThat(LambdaExample.add1(1).invoke(1L)).isEqualTo(2L)
         assertThat(LambdaExample.add2(1).invoke(1L)).isEqualTo(2L)
+
+        // currying 을 서포트하는 문법도 지원
+        assertThat(LambdaExample.add(1)(2)).isEqualTo(3L)
+
+        val addOne = LambdaExample.add(1)
+        println(addOne)
+        assertThat(addOne(5)).isEqualTo(6L)
     }
 
     @Test
@@ -19,6 +26,7 @@ internal class LambdaExampleTest {
         print(func)
 
         assertThat(func(1))
+        assertThat(func.invoke(1))
     }
 
 }
