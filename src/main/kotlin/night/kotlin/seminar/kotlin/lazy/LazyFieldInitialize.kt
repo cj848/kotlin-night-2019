@@ -8,6 +8,8 @@ class ListItemReader<T>(private val list: List<T>) : ItemReader<T> {
     val iterator: Iterator<T> by lazy {
         println("list 의 iterator가 호출 싯점에 1회만 초기화 됩니다.")
         // 마지막 값이 리턴값으로 자동 추론되며 ^lazy 는 lazy 메소드의 리턴되는 값이라는 표현
+        // 물론 return@lazy list.iterator() 로도 대체 가능 inline 메소드라
+        // return을 명시적으로 하려면 저런 표현을 해야됨
         list.iterator()
     }
 

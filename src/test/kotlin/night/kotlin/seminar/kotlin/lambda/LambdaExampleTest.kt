@@ -2,7 +2,6 @@ package night.kotlin.seminar.kotlin.lambda
 
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.jupiter.api.Test
-import kotlin.reflect.KFunction
 
 internal class LambdaExampleTest {
     @Test
@@ -13,6 +12,10 @@ internal class LambdaExampleTest {
 
         // currying 을 서포트하는 문법도 지원
         assertThat(LambdaExample.add(1)(2)).isEqualTo(3L)
+        // currying 형태의 함수 형태로도 지원 약간 불편하지만 조금 더 명확한듯..
+        assertThat(LambdaExample.add3()(1)(2)).isEqualTo(3L)
+        // currying 형태의 변수 형태로도 지원
+        assertThat(LambdaExample.add4(1)(2)).isEqualTo(3L)
 
         val addOne = LambdaExample.add(1)
         println(addOne)
