@@ -20,6 +20,7 @@ internal class LambdaExampleTest {
         val addOne = LambdaExample.add(1)
         println(addOne)
         assertThat(addOne(5)).isEqualTo(6L)
+        assertThat(addOne(8)).isEqualTo(9L)
     }
 
     @Test
