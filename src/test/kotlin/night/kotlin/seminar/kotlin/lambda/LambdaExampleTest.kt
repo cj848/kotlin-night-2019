@@ -14,16 +14,18 @@ internal class LambdaExampleTest {
         assertThat(LambdaExample.add(1)(2)).isEqualTo(3L)
 
         // currying 형태의 함수 형태로도 지원
-        assertThat(LambdaExample.add3 { 1 }(2)).isEqualTo(3L)
+        assertThat(LambdaExample.add3 { 1 }(2)(3L)).isEqualTo(6L)
         // 위 라인을 풀어쓴 표현
-        assertThat(LambdaExample.add3({ return@add3 1L })(2)).isEqualTo(3L)
+        assertThat(LambdaExample.add3({ return@add3 1L })(2)(3)).isEqualTo(1 + 2 + 3L)
         // currying 형태의 변수 형태로도 지원
-        assertThat(LambdaExample.add4 { 1 }(2)).isEqualTo(3L)
+        assertThat(LambdaExample.add4 { 1 }(2)(3)).isEqualTo(1 + 2 + 3L)
 
-        val addOne = LambdaExample.add(1)
+        val addOne = LambdaExample.add4 { 1 }
         println(addOne)
-        assertThat(addOne(5)).isEqualTo(6L)
-        assertThat(addOne(8)).isEqualTo(9L)
+        val addOnePlusFive = addOne(5)
+        println(addOnePlusFive)
+        assertThat(addOnePlusFive(7)).isEqualTo(1 + 5 + 7L)
+        assertThat(addOne(8)(9)).isEqualTo(1 + 8 + 9L)
     }
 
     @Test
