@@ -2,6 +2,7 @@ package night.kotlin.seminar.kotlin.lambda
 
 // object -> Singleton 의 문법 지원
 object LambdaExample {
+    // high order function
     // function return 축약 버전
     fun add(number: Long) = { it: Long -> it + number }
     // 풀어쓴 버전
@@ -10,11 +11,8 @@ object LambdaExample {
     }
     // 리턴만 생략
     fun add2(number: Long): (Long) -> (Long) = { it + number }
-    // currying function 버전
-    // JS 의 경우 function add3(num) = { return it => num + it } 와 동일
-    fun add3() = {num: Long -> { it: Long -> it + num }}
-
-    // currying 변수 함수 버전
-    // JS 의 경우 const add4 = num => it => num + it 로 더 간단히 가능함
-    val add4 = {num: Long -> { it: Long -> it + num }}
+    // currying 함수 버전
+    fun add3(numSupplier: () -> Long) = { it: Long -> it + numSupplier() }
+    // currying 변수 버전
+    val add4 = {numSupplier: () -> Long -> { it: Long -> it + numSupplier() }}
 }

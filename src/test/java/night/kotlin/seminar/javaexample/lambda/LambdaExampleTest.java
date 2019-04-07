@@ -2,8 +2,6 @@ package night.kotlin.seminar.javaexample.lambda;
 
 import static org.assertj.core.api.Java6Assertions.*;
 
-import java.util.function.DoubleToIntFunction;
-import java.util.function.DoubleToLongFunction;
 import java.util.function.Function;
 import java.util.function.LongFunction;
 
